@@ -1,69 +1,38 @@
-Background
-The non-profit foundation Alphabet Soup wants to create an algorithm to predict whether or not applicants for funding will be successful. Create a binary classifier that is capable of predicting whether applicants will be successful if funded by Alphabet Soup.
-From Alphabet Soup’s business team, you have received a CSV containing more than 34,000 organizations that have received funding from Alphabet Soup over the years. Within this dataset are a number of columns that capture metadata about each organization, such as the following:
+Alphabet Soup- Successful Funding Prediction Model
 
 
-EIN and NAME—Identification columns
+Overview: The purpose of this analysis is to create an algorithm which will predict
+whether or not applicants for funding will be successful in their use of that funding.
+Process: Alphabet Soup provided a CSV with historical data on more than 34,000
+organizations including their name, EIN, application type, industry affiliation,
+government organization classification, use case for funding, organization type,
+active status, income classification, special considerations, the funding amount
+requested and was the funding used effectively. The target variable for the model is
+successful funding and the remaining variables , excluding the EIN and name, are the
+features.
 
-APPLICATION_TYPE—Alphabet Soup application type
+![image](https://user-images.githubusercontent.com/86893003/161859870-3ac5f1cc-9a77-4307-a02d-27b12e87937c.png)
 
-AFFILIATION—Affiliated sector of industry
-
-CLASSIFICATION—Government organization classification
-
-USE_CASE—Use case for funding
-
-ORGANIZATION—Organization type
-
-STATUS—Active status
-
-INCOME_AMT—Income classification
-
-SPECIAL_CONSIDERATIONS—Special consideration for application
-
-ASK_AMT—Funding amount requested
-
-IS_SUCCESSFUL—Was the money used effectively
+![image](https://user-images.githubusercontent.com/86893003/161861078-27d0ca77-b40b-4edb-890f-8dbf38d4883d.png)
 
 
-Instructions
 
-Step 1: Preprocess the data
-Using your knowledge of Pandas and the Scikit-Learn’s StandardScaler(),  preprocess the dataset in order to compile, train, and evaluate the neural network model later in Step 2
+Compiling, Training and Evaluating the Model: I started with two dense layers with 200
+neurons in each layer using a sigmoid activation function. I chose the sigmoid activation
+function because the model is intended to predict a yes/no outcome. That is there are only
+possible outcomes and the probability exists between 0 and 1. The model was run for 50
+epochs.
 
-Read in the charity_data.csv to a Pandas DataFrame, and identify the following:
-
-What variable(s) are considered the target(s)?
-What variable(s) are considered the feature(s)?
-
-
-Drop the EIN and NAME columns.
-Determine the number of unique values for each column.
-For those columns that have more than 10 unique values, determine the number of data points for each unique value.
-Use the number of data points for each unique value to pick a cutoff point to bin "rare" categorical variables together in a new value, Other, and then check if the binning was successful.
-Use pd.get_dummies() to encode categorical variables
+![image](https://user-images.githubusercontent.com/86893003/161861127-b4cf27f1-c4ce-4bf8-944b-8b3d0583fef7.png)
 
 
-Step 2: Compile, Train, and Evaluate the Model
-Using TensorFlow,  design a neural network, or deep learning model, to create a binary classification model that can predict if an Alphabet Soup–funded organization will be successful based on the features in the dataset. Compile, train, and evaluate your binary classification model to calculate the model’s loss and accuracy.
-
-Continue using the jupter notebook where you’ve already performed the preprocessing steps from Step 1.
-Create a neural network model by assigning the number of input features and nodes for each layer using Tensorflow Keras.
-Create the first hidden layer and choose an appropriate activation function.
-If necessary, add a second hidden layer with an appropriate activation function.
-Create an output layer with an appropriate activation function.
-Check the structure of the model.
-Compile and train the model.
-Create a callback that saves the model's weights every 5 epochs.
-Evaluate the model using the test data to determine the loss and accuracy.
-Save and export your results to an HDF5 file, and name it AlphabetSoupCharity.h5.
+The model achieved an accuracy rate of 72.54%, which is below the target of 75%. I first tried
+adding a third layer of 100 neurons. This decreased the model accuracy slightly to 72.37%. I
+then went back to 2 layers and increased the number of neurons. This was also slightly less
+accurate than the original model, with an accuracy rate of 72.51%. My final attempt was to run
+the model with 2 layers of 200 neurons for 100 epochs instead of 50. This lead to a very slight
+increase in accuracy, 72.57%. The model never achieved the desired accuracy rate.
 
 
-Step 3: Optimize the Model
-Using your knowledge of TensorFlow, optimize your model in order to achieve a target predictive accuracy higher than 75%. If you can't achieve an accuracy higher than 75%, you'll need to make at least three attempts to do so.
-Optimize your model in order to achieve a target predictive accuracy higher than 75%. 
-
-
-Report on the Neural Network Model including recommendations for future models
-
-
+Summary: Overall, this model was about 72% accurate. If I were to work on it further I would
+try changing the input values to see if I could find one that had more salience for the mod
